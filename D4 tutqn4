@@ -12,14 +12,14 @@ void print (struct node* new_head){
     if (new_head == NULL)
         return;
     printf("%d", new_head->data);
-    print(new_head->next);
+    print(new_head->next); //Recursive function
 }
 
 struct node* enqueue(int x){
-    struct node *temp = (struct node*)malloc(sizeof(struct node));
+    struct node *temp = (struct node*)malloc(sizeof(struct node)); //Dynamic allocation of new struct node.
         temp->next = NULL;
         temp->data = x;
-    if (head == NULL){
+    if (head == NULL){ //For the case that 
         head = temp;
         rear = temp;
         return head;

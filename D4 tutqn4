@@ -11,27 +11,27 @@ struct node {
 void print (struct node* new_head){
     if (new_head == NULL)
         return;
-    printf("%d", new_head->data);
+    printf("'%d' ", new_head->data);
     print(new_head->next); //Recursive function
 }
 
-struct node* enqueue(int x){
+void enqueue(int x){
     struct node *temp = (struct node*)malloc(sizeof(struct node)); //Dynamic allocation of new struct node.
         temp->next = NULL;
         temp->data = x;
-    if (head == NULL){ //For the case that 
+    if (head == NULL){ //For the case that there is nothing within the queue.
         head = temp;
-        rear = temp;
-        return head;
+        rear = temp; //Point both head and rear to the new node
+        return;
     }
     rear->next = temp;
     rear = temp;
-    return head;
 }
-struct node* dequeue(){
+void dequeue(){
     struct node *temp = head;
-    if (head==NULL){
-        return head;
+    if (head==NULL){ //Returns
+        printf("Nothing to dequeue in ");
+        return;
     }
     else if (head->next == NULL) {
         head = NULL;
@@ -40,7 +40,6 @@ struct node* dequeue(){
     else
         head = head->next;
     free(temp);
-    return head;
 }
 
 main () {
@@ -53,16 +52,20 @@ main () {
     printf("3: Quit.\n");
     do {
         scanf("%d", &userinput);
+        fflush(stdin);
     switch (userinput) {
     case 1:
         printf("Please input an integer: ");
         scanf("%d", &int1);
+        fflush(stdin);
         enqueue(int1);
+        printf("Queue: ");
         print(head);
         puts("");
         break;
     case 2:
         dequeue();
+        printf("Queue: ");
         print(head);
         puts("");
         break;

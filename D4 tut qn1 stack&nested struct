@@ -1,0 +1,44 @@
+//Uses stack array nested structures
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct job_history {
+    char department[20]; //stack
+    char title[20]; //stack
+    int day; //stack
+    int month; //stack
+    int year; //stack
+    } history ;
+
+struct employee_record {
+    char firstname[20]; //stack
+    char lastname[20]; //stack
+    long int employee_id; //stack
+    char sex; //stack
+    int age; //stack
+    history history[10]; //stack
+} employee1;
+
+void addjob(struct employee_record *rec, char *department, char *title, int day, int month, int year, int i) {
+    strcpy(rec->history[i].department, department);
+    strcpy(rec->history[i].title, title);
+    rec->history[i].year = year;
+    rec->history[i].month = month;
+    rec->history[i].day = day;
+}
+
+main() {
+    int i, day, month, year;
+    char department[20], title[20];
+    for (i=0;i<3;i++){
+        printf("Please input job record: ");
+        scanf("%s%s%d%d%d", department, title, &day, &month, &year);
+        addjob(&employee1 ,department, title, day, month, year, i);
+    }
+    for (i=0;i<3;i++){
+        printf("%s%s%d%d%d\n", employee1.history[i].department, employee1.history[i].title,
+              employee1.history[i].day, employee1.history[i].month, employee1.history[i].year);
+    }
+    return 0;
+}
